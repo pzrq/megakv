@@ -28,7 +28,9 @@
 		<header class="wrapper light">
 			<nav>
 				<ul>
-					<li><a href="#documents">Documents</a></li>
+					<li><a href="#overview">Overview</a></li>
+					<li><a href="#setup">Setup</a></li>
+					<li><a href="#documents">Publications</a></li>
 					<li><a href="#downloads">Downloads</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
@@ -46,6 +48,11 @@
 
 
 	<section class="testimonials wrapper">
+		<div class="title animated wow fadeIn">
+			<h2><a name="overview"></a>Overview</h2>
+			<h3>A Brief Introduction of Mega-KV</h3>
+			<hr class="separator"/>
+		</div>
 		<ul class="clearfix">
 			<li class="animated wow fadeInDown">
 			<p><a><font color="838181">Mega-KV is an open source, MIT licensed, advanced key-value cache. <br>
@@ -72,12 +79,41 @@
 		</ul>
 	</section><!--  End testimonials  -->
 
+	<section class="testimonials wrapper">
+		<div class="title animated wow fadeIn">
+			<h2><a name="setup"></a>Setup Guide</h2>
+			<h3>Instructions to Setup and Run Mega-KV on Your Machine</h3>
+			<hr class="separator"/>
+		</div>
+		<ul class="clearfix">
+			<li class="animated wow fadeInDown">
+			<p> Required Hardware: Intel CPU (with SSE instruction set), Nvidia GPU, and Intel 10Gbps NIC.
+			<br> Prerequisite Software: Nvidia CUDA SDK 6.5, and Intel DPDK 1.7.1.
+			<br>
+			<br>
+			1. Setup NIC with DPDK. Run 'export RTE_SDK=$(PATH_TO_DPDK)'.
+			<br>
+			2. Go to libgpuhash directory, run 'make'.
+			<br>
+			3. Go to src directory, modify configurations including memory limit and CPU core mappings, run 'make'.
+			<br>
+			4. On another machine, run benchmark to send queries.
+			<br>
+			<br>
+			For more information on the macros for setup, please refer to README. 
+			</p>
+
+
+			</li>
+		</ul>
+	</section><!--  End testimonials  -->
+
 	<section class="services wrapper">
 		<ul class="clearfix">
 			<li class="animated wow fadeInDown">
 				<img class="icon" src="img/icon1.png" alt=""/>
 				<span class="separator"></span>
-				<h2><a name="documents"></a>Documents</h2>
+				<h2><a name="documents"></a>Publications</h2>
 				<p>
 				Kai Zhang, Kaibo Wang, Yuan Yuan,<br> Lei Guo, Rubao Lee, Xiaodong Zhang.
 				<br>
@@ -114,6 +150,9 @@
 				</p>
 			</li>
 		</ul>
+		<br>
+		<br>
+		<br>
 		<br>
 		<br>
 		<br>
