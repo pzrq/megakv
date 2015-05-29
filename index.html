@@ -74,7 +74,7 @@
 
 			Mega-KV is currently implemented above NVIDIA CUDA APIs and Intel DPDK on Linux, 
 			but it can be ported to other GPGPU programming frameworks, such as OpenCL, 
-			and operating systems as well.<font></a></p>
+			and operating systems as well.</font></a></p>
 			</li>
 		</ul>
 	</section><!--  End testimonials  -->
@@ -87,21 +87,28 @@
 		</div>
 		<ul class="clearfix">
 			<li class="animated wow fadeInDown">
-			<p> Required Hardware: Intel CPU (with SSE instruction set), Nvidia GPU, and Intel 10Gbps NIC.
+			<p><a><font color="838181"> Required Hardware: Intel CPU (with SSE instruction set), Nvidia GPU, and Intel 10Gbps NIC.
 			<br> Prerequisite Software: Nvidia CUDA SDK 6.5, and Intel DPDK 1.7.1.
 			<br>
 			<br>
-			1. Setup NIC with DPDK. Run 'export RTE_SDK=$(PATH_TO_DPDK)'.
+			1. Setup NIC with DPDK. Then run 'export RTE_SDK=DPDK_PATH', DPDK_PATH is the path of DPDK directory.
 			<br>
-			2. Go to libgpuhash directory, run 'make'.
+			2. Go to libgpuhash directory, run 'make'. This generates the GPU hash table library.
 			<br>
-			3. Go to src directory, modify configurations including memory limit and CPU core mappings, run 'make'.
+			3. Go to src directory, modify configurations including memory limit and CPU core mappings, then run 'make'.
 			<br>
-			4. On another machine, run benchmark to send queries.
+			4. Run 'sudo ./build/megakv' to start Mega-KV.
+			<br>
+			5. On another machine connected via a 10Gbps network, go to benchmark directory and run 'make'.
+			<br>
+			6. Run 'sudo ./build/benchmark' to generate queries.
 			<br>
 			<br>
 			For more information on the macros for setup, please refer to README. 
+		</font></a>
 			</p>
+			<br>
+			<br>
 
 
 			</li>
