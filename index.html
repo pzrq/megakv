@@ -50,12 +50,14 @@
 			<li class="animated wow fadeInDown">
 			<p><a><font color="838181">Mega-KV is an open source, MIT licensed, advanced key-value cache. <br>
 		<br>
-					With the recently developed software techniques and hardwares for high-speed network processing,
-					the network is no longer the bottleneck for an in-memory key-value store.
-					Instead, accessing the index data structure and key-value items become the two major operations
-					in the query processing.
+					With the recent advancement on hardware and software techniques for high-speed network processing,
+					network processing is no longer the bottleneck for an in-memory key-value store.
+					Instead, accessing the index data structure and key-value items in the main memory have become the two major operations
+					with the highest overhead in the query processing.
 					However, as the memory performance significantly lags behind the CPU computing power,
-					the key-value store performance is hard to be further improved under such architectures.
+					the key-value store performance is hard to be further improved under the conventional Multicore architectures.
+		<br>
+		<br>
 			Mega-KV adopts GPU in the query processing by offloading the index
 			data structure and its corresponding operations to GPUs.
 			By best utilizing the high-memory bandwidth and the memory access latency hiding capability of GPUs,
