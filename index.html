@@ -32,30 +32,60 @@
 					<li><a href="#setup">Setup</a></li>
 					<li><a href="#documents">Publications</a></li>
 					<li><a href="#downloads">Downloads</a></li>
-					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</nav>
 		</header>
 
 		<div class="caption light animated wow fadeInDown clearfix">
 			<h1>Mega-KV: A GPU-Based In-Memory Key-Value Store</h1>
-			<p>One of the Highest Throughput In-Memory Key-Value Stores on Commodity Processors</p>
+			<p>Fastest In-Memory Key-Value Stores on Commodity Processors</p>
 		</div>
 		<div class="shadow"></div>
 	</section><!--  End billboard  -->
 
 
-
+	<section class="services wrapper">
+		<ul class="clearfix">
+			<li class="animated wow fadeInDown">
+				<img class="icon" src="img/ic_speed.jpeg" width="170" alt=""/>
+				<span class="separator"></span>
+				<h2>Speed</h2>
+				<p> Mega-KV is the fastest in-memory key-value store on commodity processors,
+				which can be up to 100X faster than Memcached.
+				</p>
+			</li>
+			<li class="animated wow fadeInDown"  data-wow-delay=".4s">
+				<img class="icon" src="img/ic_feature.jpeg" width="136" alt=""/>
+				<span class="separator"></span>
+				<h2>Feature</h2>
+				<p>
+				Mega-KV makes innovative use of GPU to offload the index data structure and
+				the corresponding operations.
+				</p>
+			</li>
+			<li class="animated wow fadeInDown"  data-wow-delay=".2s">
+				<img class="icon" src="img/ic_puzzle.jpeg" width="136" alt=""/>
+				<span class="separator"></span>
+				<h2>Extensibility</h2>
+				<p>
+				Mega-KV takes future growth into consideration, and has
+				a good extensibility to more abstractions, interfaces, and functions.
+				</p>
+			</li>
+		</ul>
+		<br>
+		<br>
+		<br>
+	</section><!--  End services  -->
 
 	<section class="testimonials wrapper">
 		<div class="title animated wow fadeIn">
 			<h2><a name="overview"></a>Overview</h2>
-			<h3>A Brief Introduction of Mega-KV</h3>
 			<hr class="separator"/>
 		</div>
 		<ul class="clearfix">
 			<li class="animated wow fadeInDown">
-			<p><a><font color="838181">Mega-KV is an open source, MIT licensed, advanced key-value cache. <br>
+			<p>Mega-KV is an open source, MIT licensed, advanced in-memory key-value store. <br>
 		<br>
 					With the recent advancement on hardware and software techniques for high-speed network processing,
 					network processing is no longer the bottleneck for an in-memory key-value store.
@@ -69,25 +99,73 @@
 			data structure and its corresponding operations to GPUs.
 			By best utilizing the high-memory bandwidth and the memory access latency hiding capability of GPUs,
 			Mega-KV achieves significant performance improvement.
-			<br>
-		<br>
-
-			Mega-KV is currently implemented above NVIDIA CUDA APIs and Intel DPDK on Linux, 
-			but it can be ported to other GPGPU programming frameworks, such as OpenCL, 
-			and operating systems as well.</font></a></p>
+	</p>
 			</li>
 		</ul>
+		<br>
+		<br>
+		<br>
 	</section><!--  End testimonials  -->
+
+
+	<section class="services wrapper">
+		<ul class="clearfix">
+			<li class="animated wow fadeInDown">
+			<a name="documents"></a>
+				<img class="icon" src="img/ic_document.png" width="160" alt=""/>
+				<span class="separator"></span>
+				<h2>Publications</h2>
+				<p>
+				Kai Zhang, Kaibo Wang, Yuan Yuan,<br> Lei Guo, Rubao Lee, Xiaodong Zhang.
+				<br>
+				<a href="http://web.cse.ohio-state.edu/hpcs/WWW/HTML/publications/abs15-1.html" target="_blank">
+				<font color="black">Mega-KV: A Case for GPUs to Maximize the Throughput of In Memory Key-Value Stores</font></a>. 
+			<br>VLDB 2015, Kohala, Hawaii, August 31 - <br>September 4, 2015.
+				</p>
+			</li>
+			<li class="animated wow fadeInDown"  data-wow-delay=".4s">
+			<a name="downloads"></a>
+				<img class="icon" src="img/ic_download.jpeg" width="100" alt=""/>
+				<span class="separator"></span>
+				<h2></a>Downloads</h2>
+				<p> June 1, 2015: Mega-KV 0.1 alpha released. Download Link:
+				<a href="megakv-0.1-alpha.tar.gz">
+					<font color="black">megakv-0.1-alpha.tar.gz</font></a>.
+				<br>
+				Other useful links:<br>
+					<a href="http://dpdk.org/browse/dpdk/tag/?id=v1.7.1">
+						<font color=black>DPDK-1.7.1</font></a>
+							and
+					<a href="https://developer.nvidia.com/cuda-toolkit-65">
+						<font color=black>CUDA-6.5</font></a>.
+				</p>
+			</li>
+			<li class="animated wow fadeInDown"  data-wow-delay=".2s">
+			<a name="contact"></a>
+				<img class="icon" src="img/ic_email.jpeg" width="110" alt=""/>
+				<span class="separator"></span>
+				<h2>Contact</h2>
+				<p>
+				We are continuously improving the <br>project.
+				If you have any suggestions <br> or find any bugs in the code, 
+				you <br> can email the author at <br>
+				<font color="black">kay21s [AT] gmail [DOT] com</font>.
+				</p>
+			</li>
+		</ul>
+		<br>
+		<br>
+		<br>
+	</section><!--  End services  -->
 
 	<section class="testimonials wrapper">
 		<div class="title animated wow fadeIn">
 			<h2><a name="setup"></a>Setup Guide</h2>
-			<h3>Instructions to Setup and Run Mega-KV on Your Machine</h3>
 			<hr class="separator"/>
 		</div>
 		<ul class="clearfix">
 			<li class="animated wow fadeInDown">
-			<p><a><font color="838181"> Required Hardware: Intel CPU (with SSE instruction set), Nvidia GPU, and Intel 10Gbps NIC.
+			<p>Required Hardware: Intel CPU (with SSE instruction set), Nvidia GPU, and Intel 10Gbps NIC.
 			<br> Prerequisite Software: Nvidia CUDA SDK 6.5, and Intel DPDK 1.7.1.
 			<br>
 			<br>
@@ -105,7 +183,6 @@
 			<br>
 			<br>
 			For more information on the macros for setup, please refer to README. 
-		</font></a>
 			</p>
 			<br>
 			<br>
@@ -113,62 +190,10 @@
 
 			</li>
 		</ul>
+		<br>
+		<br>
+		<br>
 	</section><!--  End testimonials  -->
-
-	<section class="services wrapper">
-		<ul class="clearfix">
-			<li class="animated wow fadeInDown">
-				<img class="icon" src="img/icon1.png" alt=""/>
-				<span class="separator"></span>
-				<h2><a name="documents"></a>Publications</h2>
-				<p>
-				Kai Zhang, Kaibo Wang, Yuan Yuan,<br> Lei Guo, Rubao Lee, Xiaodong Zhang.
-				<br>
-				<a href="http://web.cse.ohio-state.edu/hpcs/WWW/HTML/publications/abs15-1.html" target="_blank">
-				<font color="black">Mega-KV: A Case for GPUs to Maximize the Throughput of In Memory Key-Value Store</font></a>. 
-			<br>VLDB 2015, Kohala, Hawaii, August 31 - <br>September 4, 2015.
-				</p>
-			</li>
-			<li class="animated wow fadeInDown"  data-wow-delay=".4s">
-				<img class="icon" src="img/icon3.png" alt=""/>
-				<span class="separator"></span>
-				<h2><a name="downloads"></a>Downloads</h2>
-				<p> June 1, 2015: Mega-KV 0.1 alpha released. Download Link:
-				<a href="megakv-0.1-alpha.tar.gz">
-					<font color="black">megakv-0.1-alpha.tar.gz</font></a>.
-				<br>
-				Other useful links:<br>
-					<a href="http://dpdk.org/browse/dpdk/tag/?id=v1.7.1">
-						<font color="838181">DPDK-1.7.1</font></a>
-							and
-					<a href="https://developer.nvidia.com/cuda-toolkit-65">
-						<font color="838181">CUDA-6.5</font></a>.
-				</p>
-			</li>
-			<li class="animated wow fadeInDown"  data-wow-delay=".2s">
-				<img class="icon" src="img/icon2.png" alt=""/>
-				<span class="separator"></span>
-				<h2><a name="contact"></a>Contact</h2>
-				<p>
-				We are continuously improving the <br>project.
-				If you have any suggestions <br> or find any bugs in the code, 
-				you <br> can email the author at <br>
-				<font color="black">kay21s [AT] gmail [DOT] com</font>.
-				</p>
-			</li>
-		</ul>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-	</section><!--  End services  -->
-
 
 	<footer>
 		<div class="wrapper">
