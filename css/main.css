@@ -290,7 +290,7 @@ header.dark nav ul li a:hover{
 .services ul li h2{
     color: #000052;
     font-family: "raleway-bold";
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     margin: 0;
 }
@@ -298,7 +298,7 @@ header.dark nav ul li a:hover{
 .services ul li p{
    color: black;
     font-family: "raleway-regular";
-    font-size: 14px;
+    font-size: 15px;
     line-height: 28px; 
     margin-top: 40px;
     letter-spacing: .5px;
