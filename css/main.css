@@ -553,11 +553,11 @@ footer{
 }
 
 footer .footer_logo{
-    float: left;
+    float: middle;
 }
 
 footer .rights p{
-    float: left;
+    float: middle;
     color: #838181;
     font-family: "raleway-regular";
     font-size: 13px;
