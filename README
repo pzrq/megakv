@@ -25,7 +25,7 @@ Length, and the key.
 Each SET query in the packet has the format: 16-bit Job Type(0x3), 16-bit Key
 Length, 32-bit Value Length, and the key and value.
 
-Anyone can improve or modify this protocol according to the practical needs. 
+Anyone can improve or modify this protocol according to the practical needs.
 
 
 HARDWARE
@@ -42,7 +42,7 @@ compiling problems with Mega-KV. Then run 'export RTE_SDK=$(PATH_TO_DPDK)'.
 PATH_TO_DPDK is the path of the DPDK directory.
 
 
-2. Go to libgpuhash directory, edit Makefile to setup correct CUDA installation 
+2. Go to libgpuhash directory, edit Makefile to setup correct CUDA installation
 path. We recommend installing CUDA SDK 6.5, which is known to work with Mega-KV.
 
 Some important macros in gpu_hash.h:
@@ -50,17 +50,17 @@ Some important macros in gpu_hash.h:
 > HASH_CUCKOO/HASH_2CHOICE: cuckoo hash or two choice hash.
 
 
-3. Run 'make'. This should compile the CUDA hash table library, including cuckoo 
+3. Run 'make'. This should compile the CUDA hash table library, including cuckoo
 hash or two choice hash. Macros can be set in gpu_hash.h. This will generate
 libgpuhash.a in lib directory, which is used by Mega-KV as the GPU hash table
 library.
 
 
 4. Go to src directory, edit Makefile to setup correct CUDA installation path.
-Setup other macros in Makefile and macros.h for test or production use. Edit the 
+Setup other macros in Makefile and macros.h for test or production use. Edit the
 config variables in mega.c for different GPUs or configurations.
 
-In the Makfefile, a macro is disabled with the "_0" suffix. You can enabke the
+In the Makefile, a macro is disabled with the "_0" suffix. You can enable the
 macro by removing the suffix.
 
 Some important macros in Makefile:
@@ -96,7 +96,7 @@ Corresponding DPDK parameters may also need to be modified in line 527.
 
 
 7. Benchmark.
-Goto benchmark directory. This is also based on Intel DPDK 1.7.1. Modify macros in 
+Goto benchmark directory. This is also based on Intel DPDK 1.7.1. Modify macros in
 benchmark.h, and modify CPU core mappings between the line 792 and the line 815.
 
 Run 'make', then run 'sudo ./build/benchmark'
@@ -113,7 +113,7 @@ Some important macros in benchmark.h:
 LIMITATIONS
 ===========
 1. Do not support UPDATE command yet.
-2. Do not support other fields in memcached, such as expiration time. However, they 
+2. Do not support other fields in memcached, such as expiration time. However, they
 are easy to be implemented and have been planed in the roadmap.
 3. LOCAL_TEST may not be accurate. Because the overhead of key generation is very
 huge, especially with zipf key generation.
@@ -121,5 +121,5 @@ huge, especially with zipf key generation.
 
 DEVELOPMENT
 ===========
-Go to http://kay21s.github.io/megakv for documentation and other 
+Go to http://kay21s.github.io/megakv for documentation and other
 development notices. You can contact the author at kay21s@gmail.com.
