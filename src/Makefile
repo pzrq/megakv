@@ -67,7 +67,7 @@ else
   endif
 endif
 
-ifneq ($(DARWIN),) 
+ifneq ($(DARWIN),)
       LDFLAGS   += -Xlinker -rpath $(CUDA_LIB_PATH) -L$(CUDA_LIB_PATH) -lcudart
 else
   ifeq ($(OS_SIZE),32)
@@ -89,11 +89,12 @@ CFLAGS += -I$(LIBGPUHASHDIR)
 CFLAGS += -D_GNU_SOURCE -DMEGA_MALLOC
 # AFFINITY_1: no-hyperthreading, on CPU 1
 # AFFINITY_2: hyperthreading, on CPU 1
-CFLAGS += -DCPU_AFFINITY -DAFFINITY_2
+# TODO: Disabled CPU affinity so this runs on AWS VMs, is that reasonable?
+# CFLAGS += -DCPU_AFFINITY -DAFFINITY_4
 CFLAGS += -DNOT_FORWARD_0 -DNOT_COLLECT_0 -DNOT_GPU_0
 CFLAGS += -DRECEIVER_PERFORMANCE_TEST_0
 CFLAGS += -DCOMPACT_JOB -DKEY_MATCH_0
-CFLAGS += -DUSE_LOCK 
+CFLAGS += -DUSE_LOCK
 CFLAGS += -DTWO_PORTS_0
 CFLAGS += -DSIGNATURE_0
 CFLAGS += -DPRELOAD
