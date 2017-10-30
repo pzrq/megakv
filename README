@@ -92,7 +92,7 @@ Corresponding DPDK parameters may also need to be modified in line 527.
 
 
 6. Run 'make'. This should compile Mega-KV. Then Mega-KV can be run with
-'sudo ./build/megakv'
+'./build/app/megakv'
 
 
 7. Benchmark.
