@@ -20,6 +20,12 @@
  * THE SOFTWARE.
  */
 
+/*
+ * Work around __gxx_personality_v0 compiler error:
+ * https://stackoverflow.com/questions/329059/what-is-gxx-personality-v0-for
+ */
+void *__gxx_personality_v0;
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -119,7 +125,7 @@ static int mega_init_config(void)
 	config->ifindex0 = 0;
 	config->ifindex1 = 1;
 
-	/* TODO: remember to modify the same settings in benchmark, 
+	/* TODO: remember to modify the same settings in benchmark,
 	 * or write a protocol file shared by benchmark and mega. */
 	/* Specific code is needed to set bits_insert_buf to 0, because:
 	 * x >> (32 - 0) = x, not 0. This is an unexpected result. */
@@ -204,7 +210,7 @@ static void receiver_handle_signal(void)
 		mops_actual += (double)(cc->num_insert_job + cc->num_search_job) / (double) (subtime.tv_sec * 1000000 + subtime.tv_usec);
 		printf("Actual   : %ld packets received, elapse time : %lds, RX Speed : %lf Mpps, %5.2f Gbps, Average Len. = %ld,\n\
 				insert_job_num  %ld, speed %lf Mops, search_job_num %ld, speed %lf Mops, total speed %lf Mops\n",
-				total_rx_packets, subtime.tv_sec, 
+				total_rx_packets, subtime.tv_sec,
 				(double)(total_rx_packets) / (double) (subtime.tv_sec * 1000000 + subtime.tv_usec),
 				(double)(total_rx_bytes * 8) / (double) ((subtime.tv_sec * 1000000 + subtime.tv_usec) * 1000),
 				total_rx_bytes / total_rx_packets,
@@ -251,8 +257,8 @@ static void sender_handle_signal(void)
 		total_tx_packets = cc->total_packets;
 		total_tx_bytes = cc->total_bytes;
 		speed_actual += (double)(total_tx_bytes * 8) / (double) ((subtime.tv_sec * 1000000 + subtime.tv_usec) * 1000),
-		printf("Actual: %ld packets Sent, elapse time : %lds, Send Speed : %lf Mpps, %5.2f Gbps, Aveage Len. = %ld\n", 
-				total_tx_packets, subtime.tv_sec, 
+		printf("Actual: %ld packets Sent, elapse time : %lds, Send Speed : %lf Mpps, %5.2f Gbps, Aveage Len. = %ld\n",
+				total_tx_packets, subtime.tv_sec,
 				(double)(total_tx_packets) / (double) (subtime.tv_sec * 1000000 + subtime.tv_usec),
 				(double)(total_tx_bytes * 8) / (double) ((subtime.tv_sec * 1000000 + subtime.tv_usec) * 1000),
 				total_tx_bytes / total_tx_packets);
@@ -508,7 +514,7 @@ static void mega_print_arg()
 	mprint(INFO, "DIS_UNIFORM, ZIPF_THETA is %.2f\n", ZIPF_THETA);
 #endif
 	mprint(INFO, "%d GET %d SET\n", NUM_DEFINED_GET, NUM_DEFINED_SET);
-	mprint(INFO, "%d KEY_LEN, %d VALUE_LEN, LOAD FACTOR %.3f\n", 
+	mprint(INFO, "%d KEY_LEN, %d VALUE_LEN, LOAD FACTOR %.3f\n",
 		KEY_LEN, VALUE_LEN, LOAD_FACTOR);
 #endif
 	mprint(INFO, "=====================================================\n");

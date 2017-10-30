@@ -86,7 +86,7 @@ static inline pid_t gettid(void)
 #endif
 
 void panic(char *msg);
-inline uint64_t calc_signature(char *key, int key_length);
+uint64_t calc_signature(char *key, int key_length);
 
 #define PROTOCOL_MAGIC			0x1234
 #define PROTOCOL_VALUE			0x0001

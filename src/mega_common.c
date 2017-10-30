@@ -30,7 +30,7 @@
 #include <nmmintrin.h>
 #endif
 
-inline uint64_t calc_signature(char *key, int key_length)
+uint64_t calc_signature(char *key, int key_length)
 {
 	// TODO: 1) utilize all key bits, 2) try aes
 
