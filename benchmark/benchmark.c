@@ -360,8 +360,8 @@ void *tx_loop(context_t *context)
 	for (i = 0; i < MAX_PKT_BURST; i ++) {
 		m = qconf->tx_mbufs[queue_id].m_table[i];
 		assert (m != NULL);
-		m->pkt.pkt_len = (uint16_t)pktlen;
-		m->pkt.data_len = (uint16_t)pktlen;
+		rte_pktmbuf_pkt_len(m) = (uint16_t)pktlen;
+		rte_pktmbuf_data_len(m) = (uint16_t)pktlen;
 
 		ethh = (struct ether_hdr *)rte_pktmbuf_mtod(m, unsigned char *);
 		iph = (struct ipv4_hdr *)((unsigned char *)ethh + sizeof(struct ether_hdr));
@@ -450,8 +450,8 @@ void *tx_loop(context_t *context)
 	for (i = 0; i < MAX_PKT_BURST; i ++) {
 		m = qconf->tx_mbufs[queue_id].m_table[i];
 		assert (m != NULL);
-		m->pkt.pkt_len = (uint16_t)pktlen;
-		m->pkt.data_len = (uint16_t)pktlen;
+		rte_pktmbuf_pkt_len(m) = (uint16_t)pktlen;
+		rte_pktmbuf_data_len(m) = (uint16_t)pktlen;
 
 		ethh = (struct ether_hdr *)rte_pktmbuf_mtod(m, unsigned char *);
 		iph = (struct ipv4_hdr *)((unsigned char *)ethh + sizeof(struct ether_hdr));
@@ -539,8 +539,8 @@ void *tx_loop(context_t *context)
 		for (i = 0; i < qconf->tx_mbufs[queue_id].len; i ++) {
 			/* use an IP field for measuring latency, disabled  */
 			//*(uint64_t *)((char *)rte_ctrlmbuf_data(m_table[i]) + ETHERNET_HEADER_LEN + 4) = rte_rdtsc_precise();
-			if (m->pkt.pkt_len != length_packet[WORKLOAD_ID]) {
-				printf("%d != %d\n", m->pkt.pkt_len, length_packet[WORKLOAD_ID]);
+			if (rte_pktmbuf_pkt_len(m) != length_packet[WORKLOAD_ID]) {
+				printf("%d != %d\n", rte_pktmbuf_pkt_len(m), length_packet[WORKLOAD_ID]);
 				assert(0);
 			}
 		}
