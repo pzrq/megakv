@@ -21,6 +21,8 @@ please follow the USAGE instructions below.
 1. Jun 1, 2015: megakv-0.1-alpha. Initial release; basic interfaces for an in
 memory key-value store. This is a demo and is not ready for production use yet.
 Bugs are expected.
+2. Nov 1, 2017: For [MongoDB Skunkworks][mongodb-skunkworks] - 
+Updates to run on AWS instances, Intel DPDK v16.11 and CUDA 9.
 
 
 ## PROTOCOL
@@ -153,6 +155,16 @@ Go to [http://kay21s.github.io/megakv](http://kay21s.github.io/megakv) for docum
 development notices. You can contact the author at `kay21s [AT] gmail [DOT] com`.
 
 
+## DISCLAIMER
+
+This software is not supported by `MongoDB, Inc. <https://www.mongodb.com>`__
+under any of their commercial support subscriptions or otherwise. Any usage of
+Mega-KV is at your own risk. Bug reports, feature requests and questions can be
+posted in the `Issues
+<https://github.com/pzrq/megakv/issues?state=open>`__ section on GitHub.
+
+
+[mongodb-skunkworks]: https://www.mongodb.com/careers/departments/engineering
 [top]: https://linux.die.net/man/1/top
 [htop]: https://linux.die.net/man/1/htop
 [nvidia-smi]: https://developer.nvidia.com/nvidia-system-management-interface
