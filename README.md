@@ -7,7 +7,7 @@ but it can be ported to other GPGPU programming frameworks, such as OpenCL, and
 operating systems as well.
 
 
-### GETTING STARTED
+## GETTING STARTED
 
 If you intend to run Mega-KV on AWS `p2.xlarge` instances, 
 the script in [`bin/setup.sh`](bin/setup.sh) may work for you, 
@@ -16,14 +16,14 @@ wish to understand better what is going on here,
 please follow the USAGE instructions below.
 
 
-### HISTORY
+## HISTORY
 
 1. Jun 1, 2015: megakv-0.1-alpha. Initial release; basic interfaces for an in
 memory key-value store. This is a demo and is not ready for production use yet.
 Bugs are expected.
 
 
-### PROTOCOL
+## PROTOCOL
 
 Mega-KV currently uses a simple self-defined protocol for efficient communication.
 
@@ -37,14 +37,14 @@ Length, 32-bit Value Length, and the key and value.
 Anyone can improve or modify this protocol according to the practical needs.
 
 
-### HARDWARE
+## HARDWARE
 
 NIC: Intel 10 Gigabit NIC that is supported by Intel DPDK SDK.
 CPU: Intel CPU that supports the SSE instruction set in Intel DPDK SDK.
 GPU: NVIDIA GPU newer than GTX680. We have conducted experiments on GTX780.
 
 
-### USAGE
+## USAGE
 
 1. Setup network with Intel DPDK. We recommend installing Intel DPDK 1.7.1,
 which is known to work with Mega-KV. Newer versions of DPDK may have some
@@ -125,7 +125,7 @@ threads.
     * WORKLOAD_ID: 100% GET or 95% GET
 
 
-### PERFORMANCE BOTTLENECKS
+## PERFORMANCE BOTTLENECKS
 
 It should be possible to run the following Linux system utility programs
 to identify the system's performance bottlenecks:
@@ -138,7 +138,7 @@ performance bottlenecks, for a brief overview please see
 [this AskUbuntu][ask-ubuntu-performance].
  
 
-### LIMITATIONS
+## LIMITATIONS
 
 1. Do not support UPDATE command yet.
 2. Do not support other fields in memcached, such as expiration time. However, they
@@ -147,7 +147,7 @@ are easy to be implemented and have been planed in the roadmap.
 huge, especially with zipf key generation.
 
 
-### DEVELOPMENT
+## DEVELOPMENT
 
 Go to [http://kay21s.github.io/megakv](http://kay21s.github.io/megakv) for documentation and other
 development notices. You can contact the author at `kay21s@gmail.com`.
