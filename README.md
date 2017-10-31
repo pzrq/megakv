@@ -27,11 +27,11 @@ Bugs are expected.
 
 Mega-KV currently uses a simple self-defined protocol for efficient communication.
 
-A request packet has a 16-bit magic number in the beginning: 0x1234.
-A request packet has a 16-bit ending mark in the end: 0xFFFF.
-Each GET query in the packet has the format: 16-bit Job Type(0x2), 16-bit Key
+* A request packet has a 16-bit magic number in the beginning: 0x1234.
+* A request packet has a 16-bit ending mark in the end: 0xFFFF.
+* Each GET query in the packet has the format: 16-bit Job Type(0x2), 16-bit Key
 Length, and the key.
-Each SET query in the packet has the format: 16-bit Job Type(0x3), 16-bit Key
+* Each SET query in the packet has the format: 16-bit Job Type(0x3), 16-bit Key
 Length, 32-bit Value Length, and the key and value.
 
 Anyone can improve or modify this protocol according to the practical needs.
@@ -39,9 +39,9 @@ Anyone can improve or modify this protocol according to the practical needs.
 
 ## HARDWARE
 
-NIC: Intel 10 Gigabit NIC that is supported by Intel DPDK SDK.
-CPU: Intel CPU that supports the SSE instruction set in Intel DPDK SDK.
-GPU: NVIDIA GPU newer than GTX680. We have conducted experiments on GTX780.
+* NIC: Intel 10 Gigabit NIC that is supported by Intel DPDK SDK.
+* CPU: Intel CPU that supports the SSE instruction set in Intel DPDK SDK.
+* GPU: NVIDIA GPU newer than GTX680. We have conducted experiments on GTX780.
 
 
 ## USAGE
