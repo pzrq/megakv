@@ -23,7 +23,7 @@ please follow the USAGE instructions below.
 memory key-value store. This is a demo and is not ready for production use yet.
 Bugs are expected.
 2. Nov 1, 2017: For [MongoDB Skunkworks][mongodb-skunkworks] - 
-Updates to run on AWS instances, Intel DPDK v16.11 and CUDA 9.
+Updates to run on AWS instances, Intel DPDK v16.11, CUDA 9 and Ubuntu gcc 5.4.0
 
 
 ## PROTOCOL
