@@ -39,48 +39,51 @@ GPU: NVIDIA GPU newer than GTX680. We have conducted experiments on GTX780.
 
 1. Setup network with Intel DPDK. We recommend installing Intel DPDK 1.7.1,
 which is known to work with Mega-KV. Newer versions of DPDK may have some
-compiling problems with Mega-KV. Then run 'export RTE_SDK=$(PATH_TO_DPDK)'.
-PATH_TO_DPDK is the path of the DPDK directory.
+compiling problems with Mega-KV. Then run `export RTE_SDK=$(PATH_TO_DPDK)`.
+`PATH_TO_DPDK` is the path of the DPDK directory.
 
 
-2. Go to libgpuhash directory, edit Makefile to setup correct CUDA installation
+2. Go to `libgpuhash` directory, edit `Makefile` to setup correct CUDA installation
 path. We recommend installing CUDA SDK 6.5, which is known to work with Mega-KV.
 
-Some important macros in gpu_hash.h:
-> MEM_P: 2^MEM_P bytes GPU device memory space for hash table.
-> HASH_CUCKOO/HASH_2CHOICE: cuckoo hash or two choice hash.
+Some important macros in `gpu_hash.h`:
+
+* MEM_P: 2^MEM_P bytes GPU device memory space for hash table.
+* HASH_CUCKOO/HASH_2CHOICE: cuckoo hash or two choice hash.
 
 
-3. Run 'make'. This should compile the CUDA hash table library, including cuckoo
-hash or two choice hash. Macros can be set in gpu_hash.h. This will generate
-libgpuhash.a in lib directory, which is used by Mega-KV as the GPU hash table
+3. Run `make`. This should compile the CUDA hash table library, including cuckoo
+hash or two choice hash. Macros can be set in `gpu_hash.h`. This will generate
+`libgpuhash.a` in lib directory, which is used by Mega-KV as the GPU hash table
 library.
 
 
-4. Go to src directory, edit Makefile to setup correct CUDA installation path.
-Setup other macros in Makefile and macros.h for test or production use. Edit the
-config variables in mega.c for different GPUs or configurations.
+4. Go to `src` directory, edit `Makefile` to setup correct CUDA installation path.
+Setup other macros in `Makefile` and `macros.h` for test or production use. Edit the
+config variables in `mega.c` for different GPUs or configurations.
 
-In the Makefile, a macro is disabled with the "_0" suffix. You can enable the
+In the `Makefile`, a macro is disabled with the `_0` suffix. You can enable the
 macro by removing the suffix.
 
-Some important macros in Makefile:
-> PREFETCH_BATCH: enable batch prefetching to improve performance.
-> PRELOAD: preload key/value items into Mega-KV before test.
-> LOCAL_TEST: run Mega-KV locally, just for testing.
-> SIGNATURE: enable a simple signature algorithm instead the one used for testing.
+Some important macros in `Makefile`:
+
+* PREFETCH_BATCH: enable batch prefetching to improve performance.
+* PRELOAD: preload key/value items into Mega-KV before test.
+* LOCAL_TEST: run Mega-KV locally, just for testing.
+* SIGNATURE: enable a simple signature algorithm instead the one used for testing.
 You can implement a new signature algorithm under this macro.
 
-Some important macros in macros.h:
-> CPU_FREQUENCY_US: set the CPU frequency for the timers.
-> MEM_LIMIT: set the memory limit to avoid using virtual memory.
-> NUM_QUEUE_PER_PORT: number of queues per NIC port. Each queue will have one
+Some important macros in `macros.h`:
+
+* CPU_FREQUENCY_US: set the CPU frequency for the timers.
+* MEM_LIMIT: set the memory limit to avoid using virtual memory.
+* NUM_QUEUE_PER_PORT: number of queues per NIC port. Each queue will have one
 receiver and one sender.
 
 
-5. Edit the CPU core mappings in mega.c. Three functions for launching Receivers,
-Senders, and the Scheduler: mega_launch_receivers, mega_launch_senders, and
-mega_launch_scheduler. You can edit context->core_id assignment to change the core
+5. Edit the CPU core mappings in `mega.c`. Three functions for launching Receivers,
+Senders, and the Scheduler: `mega_launch_receivers`, `mega_launch_senders`, and
+`mega_launch_scheduler`. You can edit `context->core_id` assignment to change the core
 mapping for these threads.
 
 To maximize the resource utilization and system utilization, Hyper-threading is
@@ -92,21 +95,21 @@ threads.
 Corresponding DPDK parameters may also need to be modified in line 527.
 
 
-6. Run 'make'. This should compile Mega-KV. Then Mega-KV can be run with
-'./build/app/megakv'
+6. Run `make`. This should compile Mega-KV. Then Mega-KV can be run with
+`./build/app/megakv`
 
 
 7. Benchmark.
-Goto benchmark directory. This is also based on Intel DPDK 1.7.1. Modify macros in
-benchmark.h, and modify CPU core mappings between the line 792 and the line 815.
+Go to `benchmark` directory. This is also based on Intel DPDK 1.7.1. Modify macros in
+`benchmark.h`, and modify CPU core mappings between the line 792 and the line 815.
 
-Run 'make', then run 'sudo ./build/benchmark'
+Run `make`, then run `sudo ./build/benchmark`
 
 This benchmark currently only support for 8 byte key and 8 byte value generation.
 NOTE: LOAD_FACTOR, PRELOAD_CNT, and TOTAL_CNT should be the same with Mega-KV if
 Mega-KV preloads key-value items locally for testing.
 
-Some important macros in benchmark.h:
+Some important macros in `benchmark.h`:
 > DIS_ZIPF/DIS_UNIFORM: key popularity distribution.
 > WORKLOAD_ID: 100% GET or 95% GET
 
