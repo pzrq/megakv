@@ -9,7 +9,8 @@ operating systems as well.
 
 ## GETTING STARTED
 
-If you intend to run Mega-KV on AWS `p2.xlarge` instances, 
+If you intend to run Mega-KV on AWS `p2.xlarge` instances using the AMIs 
+listed on [Deep Learning AMI CUDA 9 Ubuntu Version][aws-deep-learning-cuda-9], 
 the script in [`bin/setup.sh`](bin/setup.sh) may work for you, 
 if you have a different environment to set up or 
 wish to understand better what is going on here, 
@@ -165,6 +166,7 @@ posted in the `Issues
 
 
 [mongodb-skunkworks]: https://www.mongodb.com/careers/departments/engineering
+[aws-deep-learning-cuda-9]: https://aws.amazon.com/marketplace/pp/B076TGJHY1
 [top]: https://linux.die.net/man/1/top
 [htop]: https://linux.die.net/man/1/htop
 [nvidia-smi]: https://developer.nvidia.com/nvidia-system-management-interface
