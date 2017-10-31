@@ -55,10 +55,10 @@ compiling problems with Mega-KV. Then run `export RTE_SDK=$(PATH_TO_DPDK)`.
 2. Go to `libgpuhash` directory, edit `Makefile` to setup correct CUDA installation
 path. We recommend installing CUDA SDK 6.5, which is known to work with Mega-KV.
 
-Some important macros in `gpu_hash.h`:
+    Some important macros in `gpu_hash.h`:
 
-* MEM_P: 2^MEM_P bytes GPU device memory space for hash table.
-* HASH_CUCKOO/HASH_2CHOICE: cuckoo hash or two choice hash.
+    * MEM_P: 2^MEM_P bytes GPU device memory space for hash table.
+    * HASH_CUCKOO/HASH_2CHOICE: cuckoo hash or two choice hash.
 
 
 3. Run `make`. This should compile the CUDA hash table library, including cuckoo
@@ -71,23 +71,23 @@ library.
 Setup other macros in `Makefile` and `macros.h` for test or production use. Edit the
 config variables in `mega.c` for different GPUs or configurations.
 
-In the `Makefile`, a macro is disabled with the `_0` suffix. You can enable the
+    In the `Makefile`, a macro is disabled with the `_0` suffix. You can enable the
 macro by removing the suffix.
 
-Some important macros in `Makefile`:
+    Some important macros in `Makefile`:
 
-* PREFETCH_BATCH: enable batch prefetching to improve performance.
-* PRELOAD: preload key/value items into Mega-KV before test.
-* LOCAL_TEST: run Mega-KV locally, just for testing.
-* SIGNATURE: enable a simple signature algorithm instead the one used for testing.
-You can implement a new signature algorithm under this macro.
+    * PREFETCH_BATCH: enable batch prefetching to improve performance.
+    * PRELOAD: preload key/value items into Mega-KV before test.
+    * LOCAL_TEST: run Mega-KV locally, just for testing.
+    * SIGNATURE: enable a simple signature algorithm instead the one used for testing.
+      You can implement a new signature algorithm under this macro.
 
-Some important macros in `macros.h`:
+    Some important macros in `macros.h`:
 
-* CPU_FREQUENCY_US: set the CPU frequency for the timers.
-* MEM_LIMIT: set the memory limit to avoid using virtual memory.
-* NUM_QUEUE_PER_PORT: number of queues per NIC port. Each queue will have one
-receiver and one sender.
+    * CPU_FREQUENCY_US: set the CPU frequency for the timers.
+    * MEM_LIMIT: set the memory limit to avoid using virtual memory.
+    * NUM_QUEUE_PER_PORT: number of queues per NIC port. Each queue will have one
+      receiver and one sender.
 
 
 5. Edit the CPU core mappings in `mega.c`. Three functions for launching Receivers,
@@ -95,13 +95,13 @@ Senders, and the Scheduler: `mega_launch_receivers`, `mega_launch_senders`, and
 `mega_launch_scheduler`. You can edit `context->core_id` assignment to change the core
 mapping for these threads.
 
-To maximize the resource utilization and system utilization, Hyper-threading is
+    To maximize the resource utilization and system utilization, Hyper-threading is
 recommended. The Nth Receiver and the Nth Sender can be assignment to two virtual
 cores that locate on the same physical core. Please note that one physical core
 should be reserved for the Scheduler so that it will not be affected by other
 threads.
 
-Corresponding DPDK parameters may also need to be modified in line 527.
+    Corresponding DPDK parameters may also need to be modified in line 527.
 
 
 6. Run `make`. This should compile Mega-KV. Then Mega-KV can be run with
@@ -109,18 +109,20 @@ Corresponding DPDK parameters may also need to be modified in line 527.
 
 
 7. Benchmark.
-Go to `benchmark` directory. This is also based on Intel DPDK 1.7.1. Modify macros in
-`benchmark.h`, and modify CPU core mappings between the line 792 and the line 815.
 
-Run `make`, then run `sudo ./build/benchmark`
+    Go to `benchmark` directory. This is also based on Intel DPDK 1.7.1. Modify macros in
+    `benchmark.h`, and modify CPU core mappings between the line 792 and the line 815.
 
-This benchmark currently only support for 8 byte key and 8 byte value generation.
-NOTE: LOAD_FACTOR, PRELOAD_CNT, and TOTAL_CNT should be the same with Mega-KV if
-Mega-KV preloads key-value items locally for testing.
+    Run `make`, then run `sudo ./build/benchmark`
 
-Some important macros in `benchmark.h`:
-> DIS_ZIPF/DIS_UNIFORM: key popularity distribution.
-> WORKLOAD_ID: 100% GET or 95% GET
+    This benchmark currently only support for 8 byte key and 8 byte value generation.
+    NOTE: LOAD_FACTOR, PRELOAD_CNT, and TOTAL_CNT should be the same with Mega-KV if
+    Mega-KV preloads key-value items locally for testing.
+
+    Some important macros in `benchmark.h`:
+
+    * DIS_ZIPF/DIS_UNIFORM: key popularity distribution.
+    * WORKLOAD_ID: 100% GET or 95% GET
 
 
 ### PERFORMANCE BOTTLENECKS
@@ -147,8 +149,8 @@ huge, especially with zipf key generation.
 
 ### DEVELOPMENT
 
-Go to http://kay21s.github.io/megakv for documentation and other
-development notices. You can contact the author at kay21s@gmail.com.
+Go to [http://kay21s.github.io/megakv](http://kay21s.github.io/megakv) for documentation and other
+development notices. You can contact the author at `kay21s@gmail.com`.
 
 
 [top]: https://linux.die.net/man/1/top
