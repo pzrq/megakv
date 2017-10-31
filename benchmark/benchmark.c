@@ -265,7 +265,7 @@ print_stats(void)
 			total_packets_tx * number_packet_set[WORKLOAD_ID],
 			total_packets_rx,
 			total_packets_dropped);
-	printf("\nTX Speed = %5.2lf Gbps, RX Speed = %5.2lf Gbps, latency count %18"PRIu64 " average %lf", 
+	printf("\nTX Speed = %5.2lf Gbps, RX Speed = %5.2lf Gbps, latency count %18"PRIu64 " average %lf",
 			(double)(total_packets_tx * pktlen * 8) / (double) ((subtime.tv_sec*1000000+subtime.tv_usec) * 1000),
 			(double)(total_packets_rx * pktlen * 8) / (double) ((subtime.tv_sec*1000000+subtime.tv_usec) * 1000),
 			total_latency_cnt, (total_latency/total_latency_cnt)/(rte_get_tsc_hz()/1e6));
@@ -273,7 +273,7 @@ print_stats(void)
 			total_packets_tx * number_packet_get[WORKLOAD_ID] / (double) (subtime.tv_sec*1000000+subtime.tv_usec),
 			total_packets_tx * number_packet_set[WORKLOAD_ID] / (double) (subtime.tv_sec*1000000+subtime.tv_usec));
 	printf("\n====================================================\n");
-	
+
 	gettimeofday(&startime, NULL);
 }
 
@@ -338,7 +338,7 @@ void *tx_loop(context_t *context)
 		udph->dst_port = KV_UDP_PORT;
 		udph->dgram_cksum = 0;
 
-		ptr = (char *)(m->pkt.data) + EIU_HEADER_LEN;
+		ptr = (char *)rte_ctrlmbuf_data(m) + EIU_HEADER_LEN;
 		*(uint16_t *)ptr = PROTOCOL_MAGIC;
 	}
 
@@ -382,11 +382,11 @@ void *tx_loop(context_t *context)
 
 			/* construct a send buffer */
 			for (i = 0; i < qconf->tx_mbufs[queue_id].len; i ++) {
-				ip = (uint32_t *)((char *)(m_table[i]->pkt.data) + 26);
+				ip = (uint32_t *)((char *)rte_ctrlmbuf_data(m_table[i]) + 26);
 				*ip = ip_ctr ++;
 
 				/* skip the packet header and magic number */
-				ptr = (char *)(m_table[i]->pkt.data) + EIU_HEADER_LEN + MEGA_MAGIC_NUM_LEN;
+				ptr = (char *)rte_ctrlmbuf_data(m_table[i]) + EIU_HEADER_LEN + MEGA_MAGIC_NUM_LEN;
 				/* basic length = header len + magic len + ending mark len */
 				payload_len = EIU_HEADER_LEN + MEGA_MAGIC_NUM_LEN + MEGA_END_MARK_LEN;
 
@@ -471,11 +471,11 @@ void *tx_loop(context_t *context)
 		assert (qconf->tx_mbufs[queue_id].len == MAX_PKT_BURST);
 		m_table = (struct rte_mbuf **)qconf->tx_mbufs[queue_id].m_table;
 		for (i = 0; i < qconf->tx_mbufs[queue_id].len; i ++) {
-			ip = (uint32_t *)((char *)(m_table[i]->pkt.data) + 26);
+			ip = (uint32_t *)((char *)rte_ctrlmbuf_data(m_table[i]) + 26);
 			*ip = ip_ctr ++;
 
 			/* skip the packet header and magic number */
-			ptr = (char *)(m_table[i]->pkt.data) + EIU_HEADER_LEN + MEGA_MAGIC_NUM_LEN;
+			ptr = (char *)rte_ctrlmbuf_data(m_table[i]) + EIU_HEADER_LEN + MEGA_MAGIC_NUM_LEN;
 
 			for (k = 0; k < number_packet_get[WORKLOAD_ID]; k ++) {
 				*(uint16_t *)ptr = MEGA_JOB_GET;
@@ -488,7 +488,7 @@ void *tx_loop(context_t *context)
 				assert(get_key >= 1 && get_key <= preload_cnt);
 
 				/* here we try to evenly distribute the key through insert bufs,
-				 * on the first 32 bits, the highest 5 bits are used for 32 insert bufs, 
+				 * on the first 32 bits, the highest 5 bits are used for 32 insert bufs,
 				 * htonl(key & 0xff) << 3 is to assign the 5 bits.
 				 * We also need to distribute keys among buckets, and it is the lower
 				 * bits are used for hash. the "|key" is setting the hash.
@@ -538,7 +538,7 @@ void *tx_loop(context_t *context)
 
 		for (i = 0; i < qconf->tx_mbufs[queue_id].len; i ++) {
 			/* use an IP field for measuring latency, disabled  */
-			//*(uint64_t *)((char *)(m_table[i]->pkt.data) + ETHERNET_HEADER_LEN + 4) = rte_rdtsc_precise();
+			//*(uint64_t *)((char *)rte_ctrlmbuf_data(m_table[i]) + ETHERNET_HEADER_LEN + 4) = rte_rdtsc_precise();
 			if (m->pkt.pkt_len != length_packet[WORKLOAD_ID]) {
 				printf("%d != %d\n", m->pkt.pkt_len, length_packet[WORKLOAD_ID]);
 				assert(0);
@@ -604,7 +604,7 @@ void *rx_loop(context_t *context)
 		 * Read packet from RX queues
 		 */
 
-		portid = 0; 
+		portid = 0;
 		nb_rx = rte_eth_rx_burst((uint8_t) portid, queue_id, pkts_burst, MAX_PKT_BURST);
 
 		core_statistics[core_id].rx += nb_rx;
@@ -615,7 +615,7 @@ void *rx_loop(context_t *context)
 
 			//uint64_t now = rte_rdtsc_precise();
 			uint64_t now = rte_rdtsc();
-			uint64_t ts = *(uint64_t *)((char *)(m->pkt.data) + ETHERNET_HEADER_LEN + 4);
+			uint64_t ts = *(uint64_t *)((char *)rte_ctrlmbuf_data(m) + ETHERNET_HEADER_LEN + 4);
 			if (ts != 0) {
 				ts_total[queue_id] += now - ts;
 				ts_count[queue_id] ++;

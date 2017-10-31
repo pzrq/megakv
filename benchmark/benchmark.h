@@ -59,7 +59,7 @@
 	#define NUM_QUEUE 4
 #endif
 
-/* Hash Table Load Factor, These should be the same with the main program 
+/* Hash Table Load Factor, These should be the same with the main program
  * if PRELOAD is disabled! TODO: avoid mismatches */
 #define LOAD_FACTOR 0.2
 #define PRELOAD_CNT (LOAD_FACTOR * ((1 << 30)/8))
@@ -71,7 +71,7 @@
 #define SET_LEN		(KEY_LEN + VALUE_LEN + 8)
 #define ETHERNET_MAX_FRAME_LEN	1514
 
-/* choose which workload to use with the above parameters 
+/* choose which workload to use with the above parameters
  * 0 - 100% GET, 1 - 95% GET, 5% SET
  * Only supports 8 byte key/value */
 int WORKLOAD_ID = 0;
@@ -92,7 +92,7 @@ const unsigned int length_packet[8] = {1510, 1306, 1498, 1486, 1450, 1474, 1486}
 
 /* TODO: Set following values.
  * DPDK does not require MAC address to send a packet */
-//#define LOCAL_MAC_ADDR 
+//#define LOCAL_MAC_ADDR
 #define KV_IP_ADDR (uint32_t)(789)
 #define KV_UDP_PORT (uint16_t)(124)
 #define LOCAL_IP_ADDR (uint32_t)(456)

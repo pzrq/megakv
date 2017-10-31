@@ -37,3 +37,7 @@ make
 # TODO: Step 4 - Same as previous steps - CUDA installation path?
 cd ${MEGAKV_HOME}/src
 RTE_SDK="$HOME/build/dpdk" make  # RTE_SDK value assumed to be true from Step 1
+
+# TODO: Verify Step 7 - Benchmark works
+cd ${MEGAKV_HOME}/benchmark
+RTE_SDK="$HOME/build/dpdk" make  # RTE_SDK value assumed to be true from Step 1
