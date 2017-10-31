@@ -90,6 +90,7 @@ CFLAGS += -D_GNU_SOURCE -DMEGA_MALLOC
 # AFFINITY_1: no-hyperthreading, on CPU 1
 # AFFINITY_2: hyperthreading, on CPU 1
 # TODO: Disabled CPU affinity so this runs on AWS VMs, is that reasonable?
+# TODO: ... See other "Disabled CPU affinity" TODOs
 # CFLAGS += -DCPU_AFFINITY -DAFFINITY_4
 CFLAGS += -DNOT_FORWARD_0 -DNOT_COLLECT_0 -DNOT_GPU_0
 CFLAGS += -DRECEIVER_PERFORMANCE_TEST_0

@@ -287,7 +287,7 @@ void *tx_loop(context_t *context)
 	unsigned int queue_id = context->queue_id;
 
 	unsigned long mask = 1 << core_id;
-	// TODO: See other "Disabled CPU affinity" TODO
+	// TODO: See other "Disabled CPU affinity" TODOs
 //	if (sched_setaffinity(0, sizeof(unsigned long), (cpu_set_t *)&mask) < 0) {
 //		printf("core id = %d\n", core_id);
 //		assert(0);
@@ -565,9 +565,10 @@ void *rx_loop(context_t *context)
 	unsigned portid, nb_rx;
 
 	unsigned long mask = 1 << core_id;
-	if (sched_setaffinity(0, sizeof(unsigned long), (cpu_set_t *)&mask) < 0) {
-		assert(0);
-	}
+	// TODO: See other "Disabled CPU affinity" TODOs
+//	if (sched_setaffinity(0, sizeof(unsigned long), (cpu_set_t *)&mask) < 0) {
+//		assert(0);
+//	}
 
 	prev_tsc = 0;
 	timer_tsc = 0;
