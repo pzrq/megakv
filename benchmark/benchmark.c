@@ -314,8 +314,6 @@ void *tx_loop(context_t *context)
 	for (i = 0; i < MAX_PKT_BURST; i ++) {
 		m = rte_pktmbuf_alloc(send_pktmbuf_pool);
 		assert (m != NULL);
-		m->pkt.nb_segs = 1;
-		m->pkt.next = NULL;
 		qconf->tx_mbufs[queue_id].m_table[i] = m;
 
 		ethh = (struct ether_hdr *)rte_pktmbuf_mtod(m, unsigned char *);
