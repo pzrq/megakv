@@ -16,6 +16,37 @@ if you have a different environment to set up or
 wish to understand better what is going on here, 
 please follow the USAGE instructions below.
 
+### AWS P2 instance type results
+
+We were able to rent an AWS `p2.xlarge` instance at the almost 
+[too cheap to meter][too-cheap-to-meter] AWS [spot price][spot-price] 
+of $0.1301 per hour, many many times cheaper than purchasing the equivalent
+CPUs, GPUs, motherboard, RAM, PSU, case/rack and other system components.
+This fulfils the standard dramatically lower capex outlay promise of the cloud.
+
+#### MegaKV Tesla K80 GPU utilisation out of the box was between 1-5%
+
+Using [`htop`][htop] and [`nvidia-smi`][nvidia-smi] combined with the 
+Mega-KV `src` (see USAGE Steps 4-6) we found for the default workload, 
+that both `insert` and `search` performance was still CPU-bound, with 
+GPU utilisation at 1-2% and 4-5% for the  `insert` and `search` 
+phases respectively.
+
+Future work could look into why this is the case and investigate 
+how to attain a higher utilisation of the available GPU resource, such as 
+offloading more of the CPU-bound work onto the GPU itself, other parts of 
+the system such as say the networking stack, or even other AWS instances.
+
+#### The benchmark `rte_eth_dev_count()` returns 0
+
+This most likely means DPDK-enabled network interfaces are not available on P2 
+instances, [only X1 instances, at the time of writing][aws-dpdk-ena-x1-only].
+
+Future work could wait for a [P2, P3 or CG1 CUDA-enabled][aws-cuda-instances] 
+instance to also have DPDK / ENA support, or as Kai Zhang, et al suggested
+earlier in this README, consider ports to other GPGPU programming frameworks,
+such as OpenCL, or support for other operating systems as well.
+
 
 ## HISTORY
 
@@ -23,7 +54,8 @@ please follow the USAGE instructions below.
 memory key-value store. This is a demo and is not ready for production use yet.
 Bugs are expected.
 2. Nov 1, 2017: For [MongoDB Skunkworks][mongodb-skunkworks] - 
-Updates to run on AWS instances, Intel DPDK v16.11, CUDA 9 and Ubuntu gcc 5.4.0
+Updates to run on AWS `p2.xlarge` instances, Intel DPDK v16.11, CUDA 9 
+and Ubuntu gcc 5.4.0
 
 
 ## PROTOCOL
@@ -171,7 +203,11 @@ posted in the [Issues](https://github.com/pzrq/megakv/issues?state=open) section
 
 [mongodb-skunkworks]: https://www.mongodb.com/careers/departments/engineering
 [aws-deep-learning-cuda-9]: https://aws.amazon.com/marketplace/pp/B076TGJHY1
+[too-cheap-to-meter]: https://en.wikipedia.org/wiki/Too_cheap_to_meter
+[spot-price]: https://aws.amazon.com/ec2/spot/pricing/
 [top]: https://linux.die.net/man/1/top
 [htop]: https://linux.die.net/man/1/htop
 [nvidia-smi]: https://developer.nvidia.com/nvidia-system-management-interface
+[aws-dpdk-ena-x1-only]: https://aws.amazon.com/blogs/aws/elastic-network-adapter-high-performance-network-interface-for-amazon-ec2/
+[aws-cuda-instances]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html
 [ask-ubuntu-performance]: https://askubuntu.com/questions/1540/how-can-i-find-out-if-a-process-is-cpu-memory-or-disk-bound
