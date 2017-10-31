@@ -150,7 +150,7 @@ huge, especially with zipf key generation.
 ## DEVELOPMENT
 
 Go to [http://kay21s.github.io/megakv](http://kay21s.github.io/megakv) for documentation and other
-development notices. You can contact the author at `kay21s@gmail.com`.
+development notices. You can contact the author at `kay21s [AT] gmail [DOT] com`.
 
 
 [top]: https://linux.die.net/man/1/top
