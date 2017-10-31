@@ -11,7 +11,11 @@ include $(RTE_SDK)/mk/rte.vars.mk
 APP = benchmark
 
 # all source are stored in SRCS-y
-SRCS-y := benchmark.c pkt_buff.c
+SRCS-y := benchmark.c
+# TODO: What is pkt_buff.c and why is gcc complaining?
+# make[1]: *** No rule to make target 'pkt_buff.o', needed by 'benchmark'.  Stop.
+# https://stackoverflow.com/questions/834748/gcc-makefile-error-no-rule-to-make-target
+# SRCS-y := benchmark.c pkt_buff.c
 
 CFLAGS += -g
 #CFLAGS += $(WERROR_FLAGS)
