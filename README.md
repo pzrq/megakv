@@ -111,6 +111,19 @@ Some important macros in benchmark.h:
 > WORKLOAD_ID: 100% GET or 95% GET
 
 
+### PERFORMANCE BOTTLENECKS
+
+It should be possible to run the following Linux system utility programs
+to identify the system's performance bottlenecks:
+
+ 1. CPU/RAM bottlenecks - [`top`][top] or [`htop`][htop]
+ 2. GPU bottlenecks - [`nvidia-smi`][nvidia-smi]
+
+There may also be a need for additional specific tools to investigate 
+performance bottlenecks, for a brief overview please see 
+[this AskUbuntu][ask-ubuntu-performance].
+ 
+
 ### LIMITATIONS
 
 1. Do not support UPDATE command yet.
@@ -124,3 +137,9 @@ huge, especially with zipf key generation.
 
 Go to http://kay21s.github.io/megakv for documentation and other
 development notices. You can contact the author at kay21s@gmail.com.
+
+
+[top]: https://linux.die.net/man/1/top
+[htop]: https://linux.die.net/man/1/htop
+[nvidia-smi]: https://developer.nvidia.com/nvidia-system-management-interface
+[ask-ubuntu-performance]: https://askubuntu.com/questions/1540/how-can-i-find-out-if-a-process-is-cpu-memory-or-disk-bound
