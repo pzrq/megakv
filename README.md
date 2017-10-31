@@ -10,7 +10,7 @@ operating systems as well.
 ### GETTING STARTED
 
 If you intend to run MegaKV on AWS `p2.xlarge` instances, 
-the script in [`bin/setup.sh`](../bin/setup.sh) may work for you, 
+the script in [`bin/setup.sh`](bin/setup.sh) may work for you, 
 if you have a different environment to set up or 
 wish to understand better what is going on here, 
 please follow the USAGE instructions below.
