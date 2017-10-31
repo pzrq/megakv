@@ -287,10 +287,11 @@ void *tx_loop(context_t *context)
 	unsigned int queue_id = context->queue_id;
 
 	unsigned long mask = 1 << core_id;
-	if (sched_setaffinity(0, sizeof(unsigned long), (cpu_set_t *)&mask) < 0) {
-		printf("core id = %d\n", core_id);
-		assert(0);
-	}
+	// TODO: See other "Disabled CPU affinity" TODO
+//	if (sched_setaffinity(0, sizeof(unsigned long), (cpu_set_t *)&mask) < 0) {
+//		printf("core id = %d\n", core_id);
+//		assert(0);
+//	}
 
 	qconf = &lcore_queue_conf[queue_id];
 
