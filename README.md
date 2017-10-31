@@ -163,11 +163,10 @@ development notices. You can contact the author at `kay21s [AT] gmail [DOT] com`
 
 ## DISCLAIMER
 
-This software is not supported by `MongoDB, Inc. <https://www.mongodb.com>`__
+This software is not supported by [MongoDB, Inc.](https://www.mongodb.com)
 under any of their commercial support subscriptions or otherwise. Any usage of
 Mega-KV is at your own risk. Bug reports, feature requests and questions can be
-posted in the `Issues
-<https://github.com/pzrq/megakv/issues?state=open>`__ section on GitHub.
+posted in the [Issues](https://github.com/pzrq/megakv/issues?state=open) section on GitHub.
 
 
 [mongodb-skunkworks]: https://www.mongodb.com/careers/departments/engineering
