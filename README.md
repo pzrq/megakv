@@ -7,6 +7,15 @@ but it can be ported to other GPGPU programming frameworks, such as OpenCL, and
 operating systems as well.
 
 
+### GETTING STARTED
+
+If you intend to run MegaKV on AWS `p2.xlarge` instances, 
+the script in [`bin/setup.sh`](../bin/setup.sh) may work for you, 
+if you have a different environment to set up or 
+wish to understand better what is going on here, 
+please follow the USAGE instructions below.
+
+
 ### HISTORY
 
 1. Jun 1, 2015: megakv-0.1-alpha. Initial release; basic interfaces for an in
