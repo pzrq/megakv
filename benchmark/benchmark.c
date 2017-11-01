@@ -431,7 +431,7 @@ void *tx_loop(context_t *context)
 			ret = rte_eth_tx_burst(port, (uint16_t)queue_id, m_table, (uint16_t)qconf->tx_mbufs[queue_id].len);
 		}
 
-		printf(" ==========================     Hash table has been loaded     ========================== \n");
+		printf("\e[32m ==========================     Hash table has been loaded     ========================== \e[0m\n");
 
 		loading_mode = 0;
 	}

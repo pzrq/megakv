@@ -620,7 +620,7 @@ static void preload(int id)
 		while(k > 0) k--;
 	}
 
-	mprint(INFO, " ==========================     Hash table has been loaded     ========================== \n");
+	mprint(INFO, "\e[32m ==========================     Hash table has been loaded     ==========================  \e[0m\n");
 
 	loading_mode = 0;
 
