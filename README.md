@@ -37,6 +37,15 @@ how to attain a higher utilisation of the available GPU resource, such as
 offloading more of the CPU-bound work onto the GPU itself, other parts of 
 the system such as say the networking stack, or even other AWS instances.
 
+#### Example improvement - Modifying `NUM_QUEUE_PER_PORT` and `MAX_WORKER_NUM`
+
+We found that modifying the values `NUM_QUEUE_PER_PORT` and `MAX_WORKER_NUM`
+in [macros.h][macros-h-opt] from 7 and 12 respectively to 1 and 1 improved
+out of the box MegaKV insert phase throughput on our `p2.xlarge` instance 
+from ~0.5 to ~2 Mops, and also improved search phase performance 
+from ~8 to ~18 Mops, a ~4x and ~2x improvement respectively 
+for our machine.
+
 #### The benchmark `rte_eth_dev_count()` returns 0
 
 This most likely means DPDK-enabled network interfaces are not available on P2 
@@ -208,6 +217,7 @@ posted in the [Issues](https://github.com/pzrq/megakv/issues?state=open) section
 [top]: https://linux.die.net/man/1/top
 [htop]: https://linux.die.net/man/1/htop
 [nvidia-smi]: https://developer.nvidia.com/nvidia-system-management-interface
+[macros-h-opt]: https://github.com/pzrq/megakv/blob/308713f364d4cb66f690722759d3d278a392ee8f/src/macros.h#L29-L31
 [aws-dpdk-ena-x1-only]: https://aws.amazon.com/blogs/aws/elastic-network-adapter-high-performance-network-interface-for-amazon-ec2/
 [aws-cuda-instances]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html
 [ask-ubuntu-performance]: https://askubuntu.com/questions/1540/how-can-i-find-out-if-a-process-is-cpu-memory-or-disk-bound
