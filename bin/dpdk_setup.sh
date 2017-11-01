@@ -60,5 +60,5 @@ echo `pwd`
 # This part takes about 2-5 minutes to compile stuff
 RTE_SDK=`pwd` make O=${RTE_TARGET}
 
-echo "\e[32m Yay - DPDK installation should have completed successfully. \e[0m"
+echo "\e[32m DPDK installation should have completed successfully."
 echo "\e[32m You should now be able to use `RTE_SDK="$HOME/build/dpdk"` \e[0m"

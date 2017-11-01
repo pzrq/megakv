@@ -38,6 +38,34 @@ make
 cd ${MEGAKV_HOME}/src
 RTE_SDK="$HOME/build/dpdk" make  # RTE_SDK value assumed to be true from Step 1
 
+# Note: This should be on a second distinct AWS machine
 # TODO: Verify Step 7 - Benchmark works
 cd ${MEGAKV_HOME}/benchmark
 RTE_SDK="$HOME/build/dpdk" make  # RTE_SDK value assumed to be true from Step 1
+
+echo "\e[32m DPDK, libgpuhash, MegaKV and benchmark have built successfully."
+echo "\e[32m The following commands should work:"
+echo ""
+echo "\e[32m   # Run MegaKV GPU test - should see 100% GPU util on nvidia-smi"
+echo "\e[32m   ./libgpuhash/test/run \e[0m"
+echo ""
+echo "\e[32m   # Run MegaKV itself"
+echo "\e[32m   # should see 4 x 100% CPU on htop, 1-5% GPU util on nvidia-smi"
+echo "\e[32m   ./src/build/app/megakv"
+echo ""
+echo "\e[32m   # Make and effect a performance tuning change"
+echo "\e[32m   # In src/macros.h, "
+echo "\e[32m   # change the values below from 7 and 12 to 1 and 1"
+echo "\e[32m   #       define NUM_QUEUE_PER_PORT	7"
+echo "\e[32m   #       define MAX_WORKER_NUM		12"
+echo "\e[32m   # Then recompile MegaKV with:"
+echo "\e[32m   cd src"
+echo "\e[32m   RTE_SDK="$HOME/build/dpdk" make"
+echo "\e[32m   cd ../"
+echo "\e[32m   # Re-running MegaKV itself"
+echo "\e[32m   # should see 3 x 100% CPU on htop, 30-10% GPU util on nvidia-smi"
+echo "\e[32m   ./src/build/app/megakv"
+echo ""
+echo "\e[32m   # Run MegaKV's benchmark, "
+echo "\e[32m   # preferably on a separate EC2 instance pointed to MegaKV"
+echo "\e[32m   sudo ./benchmark/build/app/megakv \e[0m"
