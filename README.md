@@ -140,7 +140,7 @@ threads.
 
 
 6. Run `make`. This should compile Mega-KV. Then Mega-KV can be run with
-`./build/app/megakv`
+`./build/megakv`
 
     The above currently defaults to `insert` jobs for about a minute, prints
     `==========================     Hash table has been loaded     ==========================`
