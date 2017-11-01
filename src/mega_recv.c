@@ -74,7 +74,7 @@
 #include "zipf.h"
 
 #if defined(RECEIVER_PERFORMANCE_TEST)
-#undef COMPACT_JOB 
+#undef COMPACT_JOB
 #endif
 
 #define BATCH_ALLOC(it, size, batch) \
@@ -145,7 +145,7 @@ static int mega_receiver_batch_init(void)
 	}
 
 	/* copy the input&output pointers to GPU only once, we don't need to do this later */
-	CUDA_SAFE_CALL(cudaMemcpy(device_insert_in_ptrarray, host_insert_in_ptrarray, 
+	CUDA_SAFE_CALL(cudaMemcpy(device_insert_in_ptrarray, host_insert_in_ptrarray,
 				config->num_insert_buf * sizeof(void *), cudaMemcpyHostToDevice));
 	CUDA_SAFE_CALL(cudaMalloc((void **)&(device_insert_job_num), config->num_insert_buf * sizeof(int)));
 
@@ -160,7 +160,7 @@ static int mega_receiver_batch_init(void)
 		batch->buf[i].search_out_d = (loc_t *)device_search_output;
 		batch->buf[i].delete_in_d = (delem_t *)device_delete_input;
 		batch->buf[i].insert_in_d = (delem_t *)device_insert_input;
-		
+
 		batch->buf[i].search_job_list = mega_mem_malloc(config->batch_max_search_job * sizeof(mega_job_search_t));
 		batch->buf[i].insert_job_list = mega_mem_malloc(config->batch_max_insert_job * config->num_insert_buf * sizeof(mega_job_insert_t));
 		batch->buf[i].num_search_job = 0;
@@ -170,7 +170,7 @@ static int mega_receiver_batch_init(void)
 
 
 		/* Init insert bufs, one buf will have config->num_insert_buf host buffers */
-		p = (mega_batch_insert_t *)calloc(config->num_insert_buf, sizeof(mega_batch_insert_t));	
+		p = (mega_batch_insert_t *)calloc(config->num_insert_buf, sizeof(mega_batch_insert_t));
 
 		/* allocate one set insert bufs */
 		CUDA_SAFE_CALL(cudaHostAlloc((void **)&(batch->buf[i].insert_in), config->batch_max_insert_job * config->num_insert_buf * sizeof(ielem_t), 0x00));
@@ -200,7 +200,7 @@ static int mega_receiver_batch_init(void)
 	/* At first the available buf is #1 and #2 */
 	batch->available_buf_id[0] = 1;
 	batch->available_buf_id[1] = 2;
-	
+
 	assert(pthread_mutex_init(&(batch->mutex_sender_buf_id), NULL) == 0);
 	assert(pthread_mutex_init(&(batch->mutex_available_buf_id), NULL) == 0);
 	assert(pthread_mutex_init(&(batch->mutex_batch_launch), NULL) == 0);
@@ -219,7 +219,7 @@ static int mega_receiver_init(mega_receiver_context_t *context)
 	mega_batch_t *batch = context->batch;
 	pthread_setspecific(worker_batch_struct, (void *)batch);
 	__builtin_prefetch(batch);
-	__builtin_prefetch(&worker_batch_struct); 
+	__builtin_prefetch(&worker_batch_struct);
 
 	for (i = 0; i < config->cpu_worker_num; i ++) {
 		receivers[i].total_packets = 0;
@@ -227,7 +227,7 @@ static int mega_receiver_init(mega_receiver_context_t *context)
 		receivers[i].num_search_job = 0;
 		receivers[i].num_insert_job = 0;
 	}
-	
+
 	/* Init receiver batch */
 	mega_receiver_batch_init();
 
@@ -261,7 +261,7 @@ int process_packet(char *pkt_ptr, int pkt_len, int unique_id)
 	int payload_len;
 	mega_receiver_t *cc = &(receivers[unique_id]);
 
-	/* Parser packet header 
+	/* Parser packet header
 	 * ----------------------------------------------------- */
 	struct ether_hdr *ethh = (struct ether_hdr *)pkt_ptr;
 	struct ipv4_hdr *iph = (struct ipv4_hdr *)(ethh + 1);
@@ -271,7 +271,7 @@ int process_packet(char *pkt_ptr, int pkt_len, int unique_id)
 	payload_len = pkt_len - (payload_ptr - pkt_ptr);
 	port = udph->src_port;
 
-	/* Parser megakv 
+	/* Parser megakv
 	 * ----------------------------------------------------- */
 	uint16_t job_type;
 	char *key;
@@ -515,7 +515,7 @@ reinsert:
 			#endif
 
 				if (id != batch->receiver_buf_id) {
-					/* It will not go wrong if the buffer switches, if the buffer is switched before 
+					/* It will not go wrong if the buffer switches, if the buffer is switched before
 					 * num_insert_job ++, then the job will not be inserted into GPU hash table,
 					 * else it will be successfully inserted. Sender will not process the inserted
 					 * job. If the item is allocated, but not inserted into the hash_table, we expect
@@ -692,7 +692,7 @@ static void mega_receiver_local_read(int id)
 				assert (get_key < preload_cnt);
 
 				/* here we try to evenly distribute the key through insert bufs,
-				 * on the first 32 bits, the highest 5 bits are used for 32 insert bufs, 
+				 * on the first 32 bits, the highest 5 bits are used for 32 insert bufs,
 				 * rte_bswap32(key & 0xff) << 3 is to assign the 5 bits.
 				 * We also need to distribute keys among buckets, and it is the lower
 				 * bits are used for hash. the "|key" is setting the hash.
@@ -808,7 +808,7 @@ static void mega_receiver_read(int ifindex, int queue_id, int id)
 void *mega_receiver_main(mega_receiver_context_t *context)
 {
 	mega_receiver_init(context);
-	mprint(INFO, "[Receiver %d] on core %d is attaching if:queue %d:%d ...\n", 
+	mprint(INFO, "[Receiver %d] on core %d is attaching if:queue %d:%d ...\n",
 			context->unique_id, context->core_id, context->ifindex, context->queue_id);
 	fflush(stdout);
 
